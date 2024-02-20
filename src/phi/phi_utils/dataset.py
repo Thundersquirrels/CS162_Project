@@ -24,11 +24,20 @@ class PhiPromptDataset(Dataset):
 
     # End of TODO.
     ##################################################
+
+    def zero_shot_eval_prompt_transform(self, claim, task_type):
+        return PHI_ZERO_SHOT_EVAL_PROMPT.format(claim=claim, task_type=task_type)
+    
+    def few_shot_eval_prompt_transform(self, examples, claim, task_type):
+        return PHI_FEW_SHOT_EVAL_PROMPT.format(examples=examples, claim=claim, task_type=task_type)
+    
+    def zero_shot_evidence_prompt_transform(self, information, claim):
+        return PHI_ZERO_SHOT_EVIDENCE_PROMPT.format(information=information, claim=claim)
+    
+    def zero_shot_evidence_evaluate_prompt_transform(self, evidence, claim, task_type):
+        return PHI_ZERO_SHOT_EVIDENCE_EVAL_PROMPT.format(evidence=evidence, claim=claim, task_type=task_type)
     
     def __getitem__(self, idx):
-
-        prompt = ""
-        
         ##################################################
         # TODO: Please complete the implementation of __getitem__
         # You may use if-else statements to choose the prompt
@@ -37,5 +46,23 @@ class PhiPromptDataset(Dataset):
         # End of TODO.
         ##################################################
         
-        return prompt
-    
+        claim = self.data[idx]['claim']
+        
+        if self.prompt_type == "zero_eval":
+            task_type = self.data[idx]['task_type']
+            return self.zero_shot_eval_prompt_transform(claim=claim, task_type=task_type)
+        
+        if self.prompt_type == "few_eval":
+            task_type = self.data[idx]['task_type']
+            examples = self.data[idx]['examples']
+            return self.few_shot_eval_prompt_transform(examples=examples, claim=claim, task_type=task_type)
+        
+        if self.prompt_type == "zero_evidence":
+            information = self.data[idx]['information']
+            return self.zero_shot_evidence_prompt_transform(information=information, claim=claim)
+        
+        if self.prompt_type == "zero_evidence_eval":
+            task_type = self.data[idx]['task_type']
+            evidence = self.evidence_data[idx]['evidence_sample']
+            return self.zero_shot_evidence_evaluate_prompt_transform(evidence=evidence, claim=claim, task_type=task_type)
+            

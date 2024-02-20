@@ -14,10 +14,7 @@ def parse_args():
     args = parser.parse_args()
     return args 
 
-def single_prompt(model, tokenizer, prompt):
-
-    text = ""
-    
+def single_prompt(model, tokenizer, prompt):    
     ##############################################################
     # TODO: Please complete the implementation of this 
     # fn. You need to tokenize a single prompt, generate outputs 
@@ -25,6 +22,15 @@ def single_prompt(model, tokenizer, prompt):
 
     # End of TODO.
     #############################################################
+    
+    input_ids = tokenizer(prompt, return_tensors="pt")["input_ids"].to(torch.device("cuda"))
+    attention_mask = (input_ids != tokenizer.pad_token_id).type(torch.float)
+
+    with torch.no_grad():
+        outputs = model.generate(input_ids, attention_mask=attention_mask, max_new_tokens=50)
+    
+    text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+
     print("Model Response: ", text)
 
 def main(args):
