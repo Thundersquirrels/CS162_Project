@@ -26,7 +26,7 @@ def dump_jsonl(data, output_path, append=False):
     """
     Write list of objects to a JSON lines file.
     """
-    mode = 'a+' if append else 'w'
+    mode = 'a+' if append else 'w+'
     with open(output_path, mode, encoding='utf-8') as f:
         for line in data:
             json_record = json.dumps(line, ensure_ascii=False)

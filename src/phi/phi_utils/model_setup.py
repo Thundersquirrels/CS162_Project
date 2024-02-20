@@ -36,8 +36,9 @@ def model_and_tokenizer_setup(model_id_or_path):
     ##################################################
     
     # Adapted from sample code: https://huggingface.co/microsoft/phi-2
-    model = AutoModelForCausalLM.from_pretrained(model_id_or_path, torch_dtype=torch.float16, attn_implementation="flash_attention_2", trust_remote_code=True) 
-    tokenizer = AutoTokenizer.from_pretrained(model_id_or_path, padding="max_length", padding_side="left", pad_token="<|endoftext|>", trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(model_id_or_path, torch_dtype=torch.float16, trust_remote_code=True)
+    # attn_implementation="flash_attention_2"
+    tokenizer = AutoTokenizer.from_pretrained(model_id_or_path, padding="max_length", padding_side="left", pad_token='<|endoftext|>', max_length=512, trust_remote_code=True)
 
     print(get_model_info(model))
 

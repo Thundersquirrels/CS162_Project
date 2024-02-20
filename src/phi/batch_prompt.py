@@ -41,11 +41,20 @@ def batch_prompt(model, tokenizer, annotations_filepath, output_filepath, prompt
 
         # End of TODO.
         ##################################################
+        input_ids = tokenizer(batch, return_tensors="pt", padding=True, truncation=True)["input_ids"].to(torch.device("cuda"))
+        attention_mask = (input_ids != tokenizer.pad_token_id).type(torch.float)
+        
+        with torch.no_grad():
+            outputs = model.generate(input_ids, attention_mask=attention_mask, max_new_tokens=50)
+        
+        for output in outputs:
+            text = tokenizer.decode(output, skip_special_tokens=True)
+            output_texts.append(text)
 
         for output_text in output_texts:
             final_response = output_text.split("Output:")[-1].split("<|endoftext|>")[0]
             tmp_response = final_response.lower()
-            if "refutes" in tmp_response or "false" in tmp_response:
+            if "refutes" in tmp_response or "false" in tmp_response or "not fair" in tmp_response or "unfair" in tmp_response:
                 predicted_label = "REFUTES"
             else:
                 predicted_label = "SUPPORTS"
