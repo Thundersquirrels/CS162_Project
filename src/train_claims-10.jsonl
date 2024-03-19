@@ -1,0 +1,10 @@
+{"claim": "The IPCC lead authors are experts in their field, instructed to fairly represent the full range of the up-to-date, peer-reviewed literature.", "label": "SUPPORTS", "task_type": "fact", "language_generated": "human", "domain": "climate"}
+{"claim": "Increased CO2 makes more water vapor, a greenhouse gas which amplifies warming", "label": "SUPPORTS", "task_type": "fact", "language_generated": "human", "domain": "climate"}
+{"claim": "Water vapour is the most dominant greenhouse gas.", "label": "SUPPORTS", "task_type": "fact", "language_generated": "human", "domain": "climate"}
+{"claim": "“A leading Canadian authority on polar bears, Mitch Taylor, said: ‘We’re  seeing an increase in bears that’s really unprecedented, and in places  where we’re seeing a decrease in the population", "label": "SUPPORTS", "task_type": "fact", "language_generated": "human", "domain": "climate"}
+{"claim": "The costs of inaction far outweigh the costs of mitigation.", "label": "SUPPORTS", "task_type": "fact", "language_generated": "human", "domain": "climate"}
+{"claim": "Greenland on the whole is losing ice, as confirmed by multiple satellite and on the ground field measurements.", "label": "SUPPORTS", "task_type": "fact", "language_generated": "human", "domain": "climate"}
+{"claim": "While the Greenland interior is in mass balance, the coastlines are losing ice.", "label": "SUPPORTS", "task_type": "fact", "language_generated": "human", "domain": "climate"}
+{"claim": "Overall Greenland is losing ice mass at an accelerating rate.", "label": "SUPPORTS", "task_type": "fact", "language_generated": "human", "domain": "climate"}
+{"claim": "While there are direct ways in which CO2 is a pollutant (acidification of the ocean), its primary impact is its greenhouse warming effect.", "label": "SUPPORTS", "task_type": "fact", "language_generated": "human", "domain": "climate"}
+{"claim": "While the greenhouse effect is a natural occurence, too much warming has severe negative impacts on agriculture, health and environment.", "label": "SUPPORTS", "task_type": "fact", "language_generated": "human", "domain": "climate"}
